@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4361574665628341814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3580876699043535423}
+  - component: {fileID: 9082426594922596577}
+  m_Layer: 0
+  m_Name: '[Installer] Main'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3580876699043535423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361574665628341814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9082426594922596577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361574665628341814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3e5db895821594790574b8473edacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: 0
+  initializers:
+  - {fileID: 11400000, guid: 2cdc45f29efb22043b01b03c9f2b5203, type: 2}
+  - {fileID: 11400000, guid: 3f8ca0527a4f7b34eb24a1a0af8e3eec, type: 2}
+  updateSystems:
+  - enabled: 1
+    system: {fileID: 11400000, guid: 268a046b43399d545968a6ffea6b1200, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 70e989d87a9cbde479417e0d681e7d3b, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: f66b2dd801683354585b37009e9456f9, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: a8b6898a08d96944fb54bd36961cb32f, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 953030d7e2b545c4aa102a10691fa929, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 3f3fdbe9180aa604fb3789e86adaee4a, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 651165fa826504a49bd9a7da5c3f2a35, type: 2}
+  - enabled: 1
+    system: {fileID: 11400000, guid: 6eded124d3e9e574585682c2228a225e, type: 2}
+  fixedUpdateSystems: []
+  lateUpdateSystems: []
+  cleanupSystems: []
