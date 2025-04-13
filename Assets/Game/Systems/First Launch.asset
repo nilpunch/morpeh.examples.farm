@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _authoringScene:
     sceneAsset: {fileID: 102900000, guid: e2cd5f7c1bc275043b8eee9c1457e9f2, type: 3}
-    scenePath: Assets/Game/Scenes/FirstLaunchWorld.unity
+    scenePath: Assets/Game/Scenes/InitialWorld.unity
