@@ -7,6 +7,10 @@ namespace Farm
 		public const string DefaultSaveFile = "DefaultWorldSave.data";
 
 		public static WorldSerializer Serializer { get; } = new WorldSerializer()
+			// Meta
+			.RegisterComponent<FruitStock>()
+
+			// Plants
 			.RegisterComponent<Plant>()
 			.RegisterComponent<SeedStage>()
 			.RegisterComponent<MatureStage>()

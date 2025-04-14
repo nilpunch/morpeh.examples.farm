@@ -11,7 +11,7 @@ namespace Farm
 	{
 		protected override void Initialize()
 		{
-			GetData().SpeedMultiplier = Random.Range(0.3f, 1f);
+			GetData().SpeedMultiplier = Random.Range(0.1f, 1f);
 		}
 	}
 

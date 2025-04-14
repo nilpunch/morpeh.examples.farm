@@ -15,7 +15,7 @@ namespace Farm
 
 			if (_fruitStock.IsEmpty())
 			{
-				_fruitStock.Add(World.CreateEntity()).Amount = PlayerPrefs.GetInt(nameof(FruitStock), 0);
+				_fruitStock.Add(World.CreateEntity()).Amount = 0;
 			}
 		}
 	}

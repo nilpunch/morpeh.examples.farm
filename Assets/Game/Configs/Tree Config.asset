@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Apple Tree
   PlantPrefab: {fileID: 4413449178930172939, guid: e6b6113767db84b49a334dae74ac9376, type: 3}
   GrowTime: 3
-  GrowSpeedVariation: 0
+  GrowSpeedVariation: 0.8
   FruitTime: 5
   FruitingSpeedVariation: 0.8
   WorthFruits: 10
