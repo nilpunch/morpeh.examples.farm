@@ -14,7 +14,7 @@ namespace Farm
 		public override void OnAwake()
 		{
 			_growthEvents = World.GetStash<GrowthEvent>();
-			
+
 			_viewHolders = World.GetStash<ViewHolder>();
 		}
 

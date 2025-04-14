@@ -2,13 +2,6 @@
 
 namespace Farm
 {
-	public enum GrowthStage
-	{
-		Seed,
-		Mature,
-		Fruiting,
-	}
-
 	public struct GrowthEvent : IComponent
 	{
 		public Entity Entity;

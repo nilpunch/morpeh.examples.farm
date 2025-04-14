@@ -2,6 +2,7 @@
 using Scellecs.Morpeh.Addons.OneShot;
 using Scellecs.Morpeh.Systems;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Farm
 {
@@ -14,6 +15,7 @@ namespace Farm
 		private Stash<SeedStage> _seeds;
 		private Stash<MatureStage> _matures;
 		private Stash<FruitingStage> _fruits;
+		private Stash<Progress> _progresses;
 
 		public override void OnAwake()
 		{
@@ -24,6 +26,7 @@ namespace Farm
 			_seeds = World.GetStash<SeedStage>();
 			_matures = World.GetStash<MatureStage>();
 			_fruits = World.GetStash<FruitingStage>();
+			_progresses = World.GetStash<Progress>();
 		}
 
 		public override void OnUpdate(float deltaTime)
@@ -36,25 +39,28 @@ namespace Farm
 				switch (growthEvent.GrowthStage)
 				{
 					case GrowthStage.Seed:
+						_seeds.Set(entity);
 						_matures.Remove(entity);
 						_fruits.Remove(entity);
-						_seeds.Set(entity, new SeedStage()
+						_progresses.Set(entity, new Progress()
 						{
-							GrowSpeedVariation = Random.Range(0f, plant.Config.GrowSpeedVariation)
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.GrowSpeedVariation)
 						});
 						break;
 					case GrowthStage.Mature:
 						_seeds.Remove(entity);
+						_matures.Set(entity);
 						_fruits.Remove(entity);
-						_matures.Set(entity, new MatureStage()
+						_progresses.Set(entity, new Progress()
 						{
-							FruitingSpeedVariation = Random.Range(0f, plant.Config.FruitingSpeedVariation)
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.FruitingSpeedVariation)
 						});
 						break;
 					case GrowthStage.Fruiting:
 						_seeds.Remove(entity);
 						_matures.Remove(entity);
 						_fruits.Set(entity);
+						_progresses.Remove(entity);
 						break;
 				}
 			}

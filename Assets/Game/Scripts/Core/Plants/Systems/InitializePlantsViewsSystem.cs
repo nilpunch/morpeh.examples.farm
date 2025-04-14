@@ -12,9 +12,9 @@ namespace Farm
 		{
 			var plants = World.GetStash<Plant>();
 			var viewChangeRequests = World.GetStash<ViewChangeRequest>();
-			var allPlants = World.Filter.With<Plant>().Build();
+			var allPlantsWithNoViews = World.Filter.With<Plant>().Without<ViewHolder>().Build();
 
-			foreach (var entity in allPlants)
+			foreach (var entity in allPlantsWithNoViews)
 			{
 				ref var plant = ref plants.Get(entity);
 
@@ -25,6 +25,8 @@ namespace Farm
 					ViewPrefab = plant.Config.PlantPrefab,
 				});
 			}
+
+			allPlantsWithNoViews.Dispose();
 		}
 	}
 }

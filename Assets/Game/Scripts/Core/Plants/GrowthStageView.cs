@@ -24,22 +24,21 @@ namespace Farm
 				ShowFruits();
 			}
 		}
-		
+
 		public void ShowSeed()
 		{
 			_seed.SetActive(true);
 			_fullyGrown.SetActive(false);
 			_fruit.SetActive(false);
-			
 		}
-		
+
 		public void ShowMature()
 		{
 			_seed.SetActive(false);
 			_fullyGrown.SetActive(true);
 			_fruit.SetActive(false);
 		}
-		
+
 		public void ShowFruits()
 		{
 			_seed.SetActive(false);

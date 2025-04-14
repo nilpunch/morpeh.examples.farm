@@ -10,27 +10,29 @@ namespace Farm
 	{
 		private Filter _maturePlants;
 		private Stash<GrowthEvent> _growthEvents;
-		private Stash<MatureStage> _mature;
 		private Stash<Plant> _plants;
+		private Stash<Progress> _progresses;
 
 		public override void OnAwake()
 		{
-			_maturePlants = World.Filter.With<Plant>().With<MatureStage>().Build();
+			_maturePlants = World.Filter
+				.With<Plant>()
+				.With<MatureStage>()
+				.With<Progress>().Build();
 
 			_growthEvents = World.GetStash<GrowthEvent>();
-			_mature = World.GetStash<MatureStage>();
 			_plants = World.GetStash<Plant>();
+			_progresses = World.GetStash<Progress>();
 		}
 
 		public override void OnUpdate(float deltaTime)
 		{
 			foreach (var entity in _maturePlants)
 			{
-				ref var mature = ref _mature.Get(entity);
 				ref var plant = ref _plants.Get(entity);
-				mature.FruitingProgress += mature.FruitingSpeed * Time.deltaTime;
+				ref var progress = ref _progresses.Get(entity);
 
-				if (mature.FruitingProgress >= plant.Config.FruitTime)
+				if (progress.ElapsedTime >= plant.Config.FruitTime)
 				{
 					_growthEvents.SetEvent(new GrowthEvent()
 					{

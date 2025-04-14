@@ -2,7 +2,6 @@
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Providers;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Farm
 {
@@ -10,7 +9,7 @@ namespace Farm
 	public sealed class FruitingStageProvider : MonoProvider<FruitingStage>
 	{
 	}
-	
+
 	[Serializable]
 	public struct FruitingStage : IComponent
 	{
