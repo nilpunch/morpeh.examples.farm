@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8224ba891ef4c86adf574a2ed3138a6, type: 3}
-  m_Name: First Launch
+  m_Script: {fileID: 11500000, guid: 420fa3d5aebe42929508007a7582a4f6, type: 3}
+  m_Name: Configs Warmup
   m_EditorClassIdentifier: 
   _authoringScene:
-    sceneAsset: {fileID: 102900000, guid: e2cd5f7c1bc275043b8eee9c1457e9f2, type: 3}
-    scenePath: Assets/Game/Scenes/InitialWorld.unity
+    sceneAsset: {fileID: 0}
+    scenePath: 
