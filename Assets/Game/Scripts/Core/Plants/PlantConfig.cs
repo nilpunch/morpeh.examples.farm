@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Farm
 {
 	[CreateAssetMenu(menuName = "ECS/Configs/" + nameof(PlantConfig))]
-	public class PlantConfig : ScriptableObject, IConfig
+	public class PlantConfig : ScriptableObject
 	{
 		public string Name;
 		public EntityView PlantPrefab;
@@ -18,7 +18,5 @@ namespace Farm
 		public float FruitingSpeedVariation = 0f;
 
 		public int WorthFruits = 10;
-
-		public string Id => name;
 	}
 }

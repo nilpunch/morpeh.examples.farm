@@ -40,7 +40,7 @@ namespace Farm
 
 			if (_fruits.Has(entity))
 			{
-				var plantConfig = _plants.Get(entity).Config;
+				var plantConfig = _plants.Get(entity).Config.Value;
 
 				// Add fruits to stock.
 				_fruitStock.Single().Amount += plantConfig.WorthFruits;

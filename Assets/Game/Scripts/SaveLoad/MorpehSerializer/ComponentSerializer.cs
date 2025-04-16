@@ -50,7 +50,7 @@ namespace Farm
 			}
 
 			// Save using json, converted in bytes.
-			var json = JsonUtility.ToJson(new EntriesArray() { Array = savedEntries });
+			var json = JsonUtility.ToJson(new EntriesArray() { Array = savedEntries }, true);
 			var bytes = Encoding.Default.GetBytes(json);
 
 			stream.Write(BitConverter.GetBytes(bytes.Length));

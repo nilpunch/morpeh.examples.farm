@@ -32,7 +32,7 @@ namespace Farm
 				ref var plant = ref _plants.Get(entity);
 				ref var progress = ref _progresses.Get(entity);
 
-				if (progress.ElapsedTime >= plant.Config.FruitTime)
+				if (progress.ElapsedTime >= plant.Config.Value.FruitTime)
 				{
 					_growthEvents.SetEvent(new GrowthEvent()
 					{

@@ -44,7 +44,7 @@ namespace Farm
 						_fruits.Remove(entity);
 						_progresses.Set(entity, new Progress()
 						{
-							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.GrowSpeedVariation)
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.Value.GrowSpeedVariation)
 						});
 						break;
 					case GrowthStage.Mature:
@@ -53,7 +53,7 @@ namespace Farm
 						_fruits.Remove(entity);
 						_progresses.Set(entity, new Progress()
 						{
-							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.FruitingSpeedVariation)
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.Value.FruitingSpeedVariation)
 						});
 						break;
 					case GrowthStage.Fruiting:

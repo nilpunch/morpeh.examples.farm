@@ -70,7 +70,7 @@ namespace Farm.UI
 				plantStage = "Fruiting";
 			}
 
-			var plantName = _plants.Get(hoverEvent.Entity).Config.Name;
+			var plantName = _plants.Get(hoverEvent.Entity).Config.Value.Name;
 			_text.text = $"{plantName} ({plantStage})";
 		}
 	}

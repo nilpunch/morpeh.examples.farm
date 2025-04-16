@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/InitialWorld.unity
     guid: e2cd5f7c1bc275043b8eee9c1457e9f2
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: 6776849dccfd48b4bbf9de8b95a7bab7, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 2ac2432cc95907d4cac9243376994a27, type: 2}

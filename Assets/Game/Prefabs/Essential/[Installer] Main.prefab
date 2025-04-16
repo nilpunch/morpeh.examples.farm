@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   order: 0
   initializers:
-  - {fileID: 11400000, guid: 4546e1d094f37174ea9a33408e758269, type: 2}
   - {fileID: 11400000, guid: 2cdc45f29efb22043b01b03c9f2b5203, type: 2}
   - {fileID: 11400000, guid: 3f8ca0527a4f7b34eb24a1a0af8e3eec, type: 2}
   - {fileID: 11400000, guid: 368ba4a030040364b9f4716d478d72c7, type: 2}
