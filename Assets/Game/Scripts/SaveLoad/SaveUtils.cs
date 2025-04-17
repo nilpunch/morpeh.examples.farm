@@ -8,9 +8,7 @@ namespace Farm
 	{
 		public static string GetPathToSaveFile(string saveFileName)
 		{
-			var rootDirectory = Application.persistentDataPath;
-			var pathToFile = Path.Combine(rootDirectory, saveFileName);
-			return pathToFile;
+			return Path.Combine(Application.persistentDataPath, saveFileName);
 		}
 
 		public static void WriteToFile(string fileName, Action<Stream> write)

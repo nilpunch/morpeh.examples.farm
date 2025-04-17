@@ -5,43 +5,37 @@ using Object = UnityEngine.Object;
 
 namespace Farm
 {
-	public static class ResourceDB
+	[CreateAssetMenu(menuName = "ECS/" + nameof(ResourceDB), fileName = nameof(ResourceDB))]
+	public class ResourceDB : ScriptableObject
 	{
-		private static readonly Dictionary<string, object> _loaded = new();
+		[SerializeField] private Object[] _resources;
 
-		public static T Load<T>(string path) where T : Object
+		private readonly Dictionary<Object, int> _idByResources = new();
+
+		private static ResourceDB s_instance;
+		public static ResourceDB Instance => s_instance ?? LoadDB();
+
+		public static int GetResourceId(Object resource)
 		{
-			if (!_loaded.TryGetValue(path, out var resource))
-			{
-				resource = Resources.Load<T>(path);
-				_loaded.Add(path, resource);
-			}
-
-			return (T)resource;
+			return Instance._idByResources[resource];
 		}
 
-		/// <summary>
-		/// Editor only. Returns path relative to Resources folder, without extension (as Resources.Load() expects).
-		/// </summary>
-		public static string GetResourcePath(Object obj)
+		public static T GetResource<T>(int id) where T : Object
 		{
-#if UNITY_EDITOR
-			var assetPath = UnityEditor.AssetDatabase.GetAssetPath(obj);
-			var resourcesIndex = assetPath.IndexOf("/Resources/", StringComparison.Ordinal);
+			return Instance._resources[id] as T;
+		}
 
-			if (resourcesIndex >= 0)
+		private static ResourceDB LoadDB()
+		{
+			var db = Resources.Load<ResourceDB>(nameof(ResourceDB));
+			var resourceId = 0;
+			foreach (var resource in db._resources)
 			{
-				var startIndex = resourcesIndex + "/Resources/".Length;
-				var endIndex = assetPath.LastIndexOf('.');
-				if (endIndex < 0)
-				{
-					endIndex = assetPath.Length;
-				}
-				return assetPath.Substring(startIndex, endIndex - startIndex);
+				db._idByResources.Add(resource, resourceId);
+				resourceId++;
 			}
-#endif
-
-			return null;
+			s_instance = db;
+			return db;
 		}
 	}
 }

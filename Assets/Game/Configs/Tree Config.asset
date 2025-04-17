@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7826b1f7b90e4cf6b278d0d6854554fe, type: 3}
   m_Name: Tree Config
   m_EditorClassIdentifier: 
-  Name: Apple Tree
+  PlantName: Apple
   PlantPrefab: {fileID: 4413449178930172939, guid: e6b6113767db84b49a334dae74ac9376, type: 3}
   GrowTime: 3
   GrowSpeedVariation: 0.8
   FruitTime: 5
   FruitingSpeedVariation: 0.8
   WorthFruits: 10
+  PlantRadius: 10

@@ -1,4 +1,5 @@
 ﻿using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Feature.Events;
 using Scellecs.Morpeh.Addons.OneShot;
 using Scellecs.Morpeh.Systems;
 using UnityEngine;
@@ -6,9 +7,10 @@ using Random = UnityEngine.Random;
 
 namespace Farm
 {
-	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(UpdateGrowthStageSystem))]
-	public class UpdateGrowthStageSystem : UpdateSystem
+	[CreateAssetMenu(menuName = "ECS/Systems/" + nameof(GrowthRequestSystem))]
+	public class GrowthRequestSystem : UpdateSystem
 	{
+		private Stash<GrowthRequest> _growthRequests;
 		private Stash<GrowthEvent> _growthEvents;
 
 		private Stash<Plant> _plants;
@@ -20,6 +22,8 @@ namespace Farm
 		public override void OnAwake()
 		{
 			World.RegisterOneShot<GrowthEvent>();
+
+			_growthRequests = World.GetStash<GrowthRequest>();
 			_growthEvents = World.GetStash<GrowthEvent>();
 
 			_plants = World.GetStash<Plant>();
@@ -31,12 +35,12 @@ namespace Farm
 
 		public override void OnUpdate(float deltaTime)
 		{
-			foreach (var growthEvent in _growthEvents)
+			foreach (var growthRequest in _growthRequests)
 			{
-				var entity = growthEvent.Entity;
+				var entity = growthRequest.Entity;
 				ref var plant = ref _plants.Get(entity);
 
-				switch (growthEvent.GrowthStage)
+				switch (growthRequest.GrowthStage)
 				{
 					case GrowthStage.Seed:
 						_seeds.Set(entity);
@@ -44,7 +48,8 @@ namespace Farm
 						_fruits.Remove(entity);
 						_progresses.Set(entity, new Progress()
 						{
-							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.Value.GrowSpeedVariation)
+							TargetTime = plant.Config.GrowTime,
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.GrowSpeedVariation)
 						});
 						break;
 					case GrowthStage.Mature:
@@ -53,7 +58,8 @@ namespace Farm
 						_fruits.Remove(entity);
 						_progresses.Set(entity, new Progress()
 						{
-							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.Value.FruitingSpeedVariation)
+							TargetTime = plant.Config.FruitTime,
+							SpeedMultiplier = 1f - Random.Range(0f, plant.Config.FruitingSpeedVariation)
 						});
 						break;
 					case GrowthStage.Fruiting:
@@ -63,7 +69,15 @@ namespace Farm
 						_progresses.Remove(entity);
 						break;
 				}
+
+				_growthEvents.SetEvent(new GrowthEvent()
+				{
+					Entity = entity,
+					GrowthStage = growthRequest.GrowthStage
+				});
 			}
+
+			_growthRequests.RemoveAll();
 		}
 	}
 }

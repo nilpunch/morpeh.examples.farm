@@ -1,20 +1,35 @@
 ﻿using System;
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Providers;
-using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Farm
 {
 	[AddComponentMenu("Farm/Plant")]
-	public sealed class PlantProvider : MonoProvider<Plant>
+	public sealed class PlantProvider : EntityProvider
 	{
 		[SerializeField] private PlantConfig _plantConfig;
 
 		protected override void Initialize()
 		{
-			GetData().Position = transform.position;
-			GetData().Config = _plantConfig;
+			Entity.SetComponent(new Plant()
+			{
+				Position = transform.position,
+				ConfigResource = new Resource<PlantConfig>(ResourceDB.GetResourceId(_plantConfig))
+			});
+
+			Entity.SetComponent(new Progress()
+			{
+				TargetTime = _plantConfig.GrowTime, 
+				SpeedMultiplier = 1f - Random.Range(0f, _plantConfig.GrowSpeedVariation)
+			});
+		}
+
+		protected override void Deinitialize()
+		{
+			Entity.RemoveComponent<Plant>();
+			Entity.RemoveComponent<Progress>();
 		}
 	}
 
@@ -22,6 +37,8 @@ namespace Farm
 	public struct Plant : IComponent
 	{
 		public Vector3 Position;
-		public ResourceReference<PlantConfig> Config;
+		public Resource<PlantConfig> ConfigResource;
+
+		public PlantConfig Config => ConfigResource.Value;
 	}
 }

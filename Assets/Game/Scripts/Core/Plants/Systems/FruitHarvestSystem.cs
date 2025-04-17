@@ -12,7 +12,7 @@ namespace Farm
 	{
 		private Stash<FruitStock> _fruitStock;
 
-		private Stash<GrowthEvent> _growthEvents;
+		private Stash<GrowthRequest> _growthRequests;
 		private Stash<Plant> _plants;
 		private Stash<FruitingStage> _fruits;
 
@@ -22,7 +22,7 @@ namespace Farm
 		{
 			_fruitStock = World.GetStash<FruitStock>();
 
-			_growthEvents = World.GetStash<GrowthEvent>();
+			_growthRequests = World.GetStash<GrowthRequest>();
 			_plants = World.GetStash<Plant>();
 			_fruits = World.GetStash<FruitingStage>();
 
@@ -40,13 +40,11 @@ namespace Farm
 
 			if (_fruits.Has(entity))
 			{
-				var plantConfig = _plants.Get(entity).Config.Value;
-
 				// Add fruits to stock.
-				_fruitStock.Single().Amount += plantConfig.WorthFruits;
+				_fruitStock.Single().Amount += _plants.Get(entity).Config.WorthFruits;
 
 				// Change fruit stage to mature.
-				_growthEvents.SetEvent(new GrowthEvent()
+				_growthRequests.SetEvent(new GrowthRequest()
 				{
 					Entity = entity,
 					GrowthStage = GrowthStage.Mature,

@@ -2,7 +2,6 @@
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Providers;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Farm
 {

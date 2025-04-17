@@ -22,7 +22,7 @@ namespace Farm
 				{
 					Entity = entity,
 					Position = plant.Position,
-					ViewPrefab = plant.Config.Value.PlantPrefab,
+					ViewPrefab = plant.Config.PlantPrefab,
 				});
 			}
 
